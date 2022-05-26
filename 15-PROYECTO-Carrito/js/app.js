@@ -6,7 +6,7 @@ eventsClick();
 function eventsClick(e){
 ListaCurso.addEventListener('click',Cargar);
 }
-//cargando element
+//cargando element de los cursos
 function Cargar(e){
 e.preventDefault();
 
@@ -16,7 +16,7 @@ leerDatos(cursoSelect);
 }
 
 }
-//lee datos
+//lee datos de curso
 function leerDatos(curso){
 InforCurso ={
  image: curso.querySelector('img').src,
