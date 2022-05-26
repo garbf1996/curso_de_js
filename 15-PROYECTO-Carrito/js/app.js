@@ -1,12 +1,12 @@
-
+//Varriables
 const ListaCurso = document.querySelector('#lista-cursos');
 
-
+//ventos click
 eventsClick();
 function eventsClick(e){
 ListaCurso.addEventListener('click',Cargar);
 }
-
+//cargando element
 function Cargar(e){
 e.preventDefault();
 
@@ -16,7 +16,7 @@ leerDatos(cursoSelect);
 }
 
 }
-
+//lee datos
 function leerDatos(curso){
 InforCurso ={
  image: curso.querySelector('img').src,
