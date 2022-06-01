@@ -29,10 +29,11 @@ carritoHTML();
 }
 
 function carritoHTML(){
+ linpiarHmtl();   
  ArticuloCarrito.forEach(curso => {
  const row = document.createElement('tr');
  row.innerHTML =`
- <td>${curso.img}</td>
+ <td><img src="${curso.img}"></td>
  <td>${curso.titulo}</td>
  <td>${curso.precio}</td>
  <td>${curso.cantidad}</td>
@@ -40,4 +41,10 @@ function carritoHTML(){
  `;
  carrito.appendChild(row);    
  });   
+ 
 }
+
+function linpiarHmtl(){
+
+}
+
