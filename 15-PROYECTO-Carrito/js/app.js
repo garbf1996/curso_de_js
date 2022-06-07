@@ -1,5 +1,4 @@
 //Varriable 
-
 const lista_curso = document.querySelector('#lista-cursos');
 const carrito = document.querySelector('#lista-carrito tbody');
 const borrar_curso = document.querySelector('#carrito');
@@ -41,20 +40,21 @@ function leerDatos(curso){
     titulo:curso.querySelector('h4').textContent,
     precio:curso.querySelector('.precio span').textContent,
     id:curso.querySelector('a').getAttribute('data-id'),
-    cantidad : 1
+    cantidad : 1,
   }
 
 const exicte = contenido.some(curso=>curso.id === inforcurso.id);
 
 if(exicte){
-const  curosos = contenido. map(curso=>{
+const  cursos = contenido. map(curso=>{
 if(curso.id === inforcurso.id){
 curso.cantidad ++;
+curso.precio = curso.precio * curso.cantidad;
 return curso;
 }else{
 return curso;
 }
-contenido = [...curosos]
+contenido = [...cursos]
 }); 
 }else{
   contenido = [...contenido, inforcurso];
@@ -86,3 +86,5 @@ function limpiarHtml(){
     carrito.removeChild(carrito.firstChild);
   }
 }
+
+
