@@ -1,90 +1,92 @@
-//Varriable 
-const lista_curso = document.querySelector('#lista-cursos');
+const curso = document.querySelector('#lista-cursos');
 const carrito = document.querySelector('#lista-carrito tbody');
-const borrar_curso = document.querySelector('#carrito');
+const borraCurso = document.querySelector('#carrito');
 const vaciar_carrito = document.querySelector('#vaciar-carrito');
-contenido = [];
+ contenidos = [];
 
-//funcion
-addClick();
-function addClick(){
-lista_curso.addEventListener('click',agregar);
-borrar_curso.addEventListener('click',borrar);
-vaciar_carrito.addEventListener('click',()=>{
-  contenido = [];
-});
+//eventos
+click();
+function click(){
+  curso.addEventListener('click', agegar);
+ borraCurso.addEventListener('click', borrar);
+ vaciar_carrito.addEventListener('click',()=>{
+contenidos = [];
+ });
+
 }
 
-function agregar(e){
+
+// Haciendo click los curo
+
+function agegar(e){
   e.preventDefault();
-  //Haciendo click los contenidos de cursos
 if(e.target.classList.contains('agregar-carrito')){
-const selec_curso = e.target.parentElement.parentElement;
-leerDatos(selec_curso);
+  const Selectcurso = e.target.parentElement.parentElement;
+  LeerDatos(Selectcurso);
 }
 }
+
 
 function borrar(e){
 if(e.target.classList.contains('borrar-curso')){
-const cursoId = e.target.getAttribute('data-id');
-contenido = contenido.filter(curso => curso.id !== cursoId);
+ const cursoID = e.target.getAttribute('id-datos');
+contenidos = contenidos.filter(curso => curso.id !== cursoID);
+
 }
-carriHTML();
+carritoHtnl();
 }
 
-//informacion de los cursos
-function leerDatos(curso){
 
-  inforcurso = {
-    img:curso.querySelector('img').src,
-    titulo:curso.querySelector('h4').textContent,
-    precio:curso.querySelector('.precio span').textContent,
-    id:curso.querySelector('a').getAttribute('data-id'),
-    cantidad : 1,
+
+function LeerDatos(curso){
+
+  inforCurso = {
+  img:curso.querySelector('img').src,
+  titulo:curso.querySelector('h4').textContent,
+  precio:curso.querySelector('.precio span').textContent,
+  id:curso.querySelector('a').getAttribute('data-id'),
+  cantindad : 1
+
   }
+ 
+  const exicte = contenidos.some(curso=> curso.id === inforCurso.id);
 
-const exicte = contenido.some(curso=>curso.id === inforcurso.id);
-
-if(exicte){
-const  cursos = contenido. map(curso=>{
-if(curso.id === inforcurso.id){
-curso.cantidad ++;
-curso.precio = curso.precio * curso.cantidad;
-return curso;
-}else{
-return curso;
-}
-contenido = [...cursos]
-}); 
-}else{
-  contenido = [...contenido, inforcurso];
-}
-
-  carriHTML();
-
-}
-
-//Carrito
-function carriHTML(){
-limpiarHtml();
-contenido.forEach(curso=>{
-
-  const row = document.createElement('tr');
-  row.innerHTML = `
-  <td><img src="${curso.img}" width="100"></td>
-  <td>${curso.titulo}</td>
-  <td>${curso.precio}</td>
-  <td>${curso.cantidad}</td>
-  <td><a a href="#" class="borrar-curso" data-id="${curso.id}">X</a></td>
-  `;
-  carrito.appendChild(row);
+if(exicte) {
+const cursos = contenidos.map(curso=>{
+  if(curso.id === inforCurso.id){
+  curso.cantindad ++;
+  curso.precio = curso.precio * curso.cantindad;
+  return curso;
+  }else{
+    return;
+  }
+  contenidos  =[...cursos];
 });
+}else{
+  contenidos = [...contenidos,inforCurso]; 
+}
+  carritoHtnl();
 }
 
-function limpiarHtml(){
-  while(carrito.firstChild){
-    carrito.removeChild(carrito.firstChild);
-  }
+function carritoHtnl(){
+  limpiarHTML();
+contenidos.forEach(curso=>{
+const row = document.createElement('tr');
+row.innerHTML = `
+<td><img src="${curso.img}" width="100"></td>
+<td>${curso.titulo}</td>
+<td>${curso.precio}</td>
+<td>${curso.cantindad}</td>
+<td><a href="#" class="borrar-curso" id-datos="${curso.id}">X</a></td>
+`;
+carrito.appendChild(row);
+})
+}
+
+function limpiarHTML(){
+while(carrito.firstChild){
+carrito.removeChild(carrito.firstChild);
+}
 }
 
 
