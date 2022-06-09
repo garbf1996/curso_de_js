@@ -72,6 +72,7 @@ function carritoHtnl(){
   limpiarHTML();
 contenidos.forEach(curso=>{
 const row = document.createElement('tr');
+{}
 row.innerHTML = `
 <td><img src="${curso.img}" width="100"></td>
 <td>${curso.titulo}</td>
