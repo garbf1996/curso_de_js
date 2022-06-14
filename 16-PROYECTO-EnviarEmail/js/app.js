@@ -22,16 +22,16 @@ if(e.target.value.length > 0){
 e.target.classList.add('border','border-green-900', 'radius-6')
 }else{
   e.target.classList.add('border','border-red-500');
-  errorMesje();
+  errorMesje("Los campos son obligatorios");
 }
 
 }
 
 
-function errorMesje(){
+function errorMesje(error){
 
  const ware = document.createElement('p');
- ware.textContent = "Los campos son obligatorios"; 
+ ware.textContent = error;
 
   ware.classList.add('border','border-red-500', 'background-red-red','text-red-500','p-3','mt-3','text-center', 'error');
 const mensaje = document.querySelectorAll('.error');
