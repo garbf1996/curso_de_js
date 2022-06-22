@@ -86,7 +86,6 @@ function mostararError(mensaje) {
   }, 5000);
   },3000); 
   }
-//
  function LimpiarFormulario(){
     formulario.reset();
    btn();
