@@ -8,7 +8,6 @@ function eventos(){
      formulario.addEventListener('submit', enviamdoTweets);
       document.addEventListener('DOMContentLoaded', ()=>{
        tweets = JSON.parse(localStorage.getItem('tweets')); 
-       console.log(tweets);
        tweetsHTML();
      })
 }
@@ -52,8 +51,15 @@ function tweetsHTML(){
 clearHTML();
     if(tweets.length > 0){
         tweets.forEach(tweet => {
+
+         const eliminar = document.createElement('a');
+         eliminar.textContent = 'x';
+         eliminar.classList.add('borrar-tweet');
+
          const li = document.createElement('li');
          li.textContent = tweet;
+
+         li.appendChild(eliminar);
          lista_tweets.appendChild(li);
         });
     }
@@ -69,4 +75,8 @@ while (lista_tweets.firstChild) {
     lista_tweets.removeChild(lista_tweets.firstChild);
 }
 }
+
+
+
+
 
