@@ -109,6 +109,7 @@ function yearFull() {
 
 //Funcion para mostrar mensaje
    function mostraMesaje(error){
+    limpiaHTML();
     const mensaje = document.createElement('p');
     mensaje.classList.add('error','p');
     mensaje.textContent = error
