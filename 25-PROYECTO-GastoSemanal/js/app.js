@@ -1,25 +1,17 @@
-//Variable y Selectores
+//Variables y Selectores
 const formulario = document.querySelector('#agregar-gasto');
-const gastoListado = document.querySelector('#gastos ul');
+const gatosListado = document.querySelector('#gastos ul');
 
 
-//Eventos
-eventList();
-function eventList(){
-    document.addEventListener('DOMContentLoaded',preguntarPresupuesto); 
+//EventListeners
+eventListeners();
+function eventListeners(){
+document.addEventListener('DOMContentLoaded',preguntarPresupuesto );
 }
 
-//Classes
-
-
-//Functions
-
 function preguntarPresupuesto(){
-    //Preguntar el presupuesto
     const presupuestoUsuario = prompt('Ingrese su presupuesto');
-    console.log(presupuestoUsuario);
-    //Validar el presupuesto
-    if(presupuestoUsuario === null || presupuestoUsuario === '' || isNaN(presupuestoUsuario) || presupuestoUsuario < 0){
-        preguntarPresupuesto();
+    if(presupuestoUsuario === null || presupuestoUsuario === '' || isNaN(presupuestoUsuario)){
+       window.location.reload();
     }
 }
