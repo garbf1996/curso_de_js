@@ -17,6 +17,11 @@ class Presupuesto{
         this.restante = Number(presupuesto);
         this.gastos = [];
     }
+    nuevoGasto(gasto){
+      this.gastos = [...this.gastos, gasto];
+      console.log(this.gastos);
+    }
+ 
 };
 
 //Classes para interfaz
@@ -66,7 +71,7 @@ function preguntarPresupuesto(){
 function agregarGasto(e){
     e.preventDefault();
     const nombre = document.querySelector('#gasto').value;
-    const cantidad = document.querySelector('#cantidad').value;
+    const cantidad = Number (document.querySelector('#cantidad').value);
 
     if(nombre === '' || cantidad === ''){
                          //Mensaje de error                //Tipo de mensaje
@@ -81,5 +86,16 @@ function agregarGasto(e){
         ui.imprimirAlerta('La cantidad debe ser un numero','error');
         return;
     }
-
+   //ojectos para  gastos
+    const gatos = {
+        id: Date.now(),
+        nombre,
+        cantidad
+    }
+    //Agregar gastos
+    presupuesto.nuevoGasto(gatos);
+    //mesanje de exito
+    ui.imprimirAlerta('Gasto agregado correctamente','success');
+    //Resetear el formulario
+    formulario.reset();
 }
