@@ -27,9 +27,12 @@ class Presupuesto{
     restarPresupuesto(){
     const gatadosMenor = this.gastos.reduce((total, gasto) => total + gasto.cantidad, 0);
     this.restante = this.presupuesto - gatadosMenor;
-    console.log(gatadosMenor);
     }
- 
+    eliminarGasto(id){
+    
+    this.gastos = this.gastos.filter(gasto => gasto.id !== id);
+     this.restarPresupuesto();
+    }
 };
 
 //Classes para interfaz
@@ -78,7 +81,9 @@ gastos.forEach(gasto => {
     botonBorrar.classList.add('btn','btn-danger');
     botonBorrar.textContent = 'Borrar';
     nuevoGasto.appendChild(botonBorrar);
-
+    botonBorrar.onclick =()=>{
+        eliminarGasto(id);
+    }
     //Insertar el gasto en el HTML
     gatosListado.appendChild(nuevoGasto);
 })
@@ -101,6 +106,13 @@ if(restante <= (presupuesto * 0.25)){
 }else if(restante <= (presupuesto * 0.50)){
     document.querySelector('.restante').classList.add('alert-warning');
 
+}else{
+    document.querySelector('.restante').classList.remove('alert-danger','alert-warning');
+}
+if(restante <= 0){
+    ui.imprimirAlerta('No tienes presupuesto para gastar','error');
+    const boton = document.querySelector('.btn-primary');
+    boton.disabled = true;
 }
 }
 }
@@ -161,4 +173,14 @@ function agregarGasto(e){
 
     //Resetear el formulario
     formulario.reset();
+}
+//Eliminar gastos
+function eliminarGasto(id){ 
+    //Eliminar gasto del presupuesto desde el objeto
+    const {gastos,restante} = presupuesto;
+    //Eliminar gasto del presupuesto desde el HTML
+    presupuesto.eliminarGasto(id);
+    ui.insertarGasto(gastos);
+    ui.actualizarGasto(restante);
+    ui.comprobarPresupuesto(presupuesto);
 }
