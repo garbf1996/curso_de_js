@@ -17,9 +17,17 @@ class Presupuesto{
         this.restante = Number(presupuesto);
         this.gastos = [];
     }
+    //Metodos para agregar gastos
     nuevoGasto(gasto){
       this.gastos = [...this.gastos, gasto];
-      console.log(this.gastos);
+      this.restarPresupuesto();
+      
+    }
+    //Metodo para restar presupuesto de usuario
+    restarPresupuesto(){
+    const gatadosMenor = this.gastos.reduce((total, gasto) => total + gasto.cantidad, 0);
+    this.restante = this.presupuesto - gatadosMenor;
+    console.log(gatadosMenor);
     }
  
 };
@@ -49,7 +57,43 @@ document.querySelector('.primario').insertBefore(divMensaje,formulario);
 setTimeout(() => {
     divMensaje.remove();
 },3000);
-}    
+} 
+//Insertar el gasto en el HTML
+insertarGasto(gastos){ 
+this.limpiarHTML(); //Limpiar el HTML previamente
+gastos.forEach(gasto => {
+    const {nombre,cantidad,id} = gasto;
+
+    //Crear el elemento li
+    const nuevoGasto = document.createElement('li');
+    nuevoGasto.className = 'list-group-item d-flex justify-content-between align-items-center';
+    nuevoGasto.dataset.id = id;
+
+    //Agregar el html del gasto
+    nuevoGasto.innerHTML = `
+    ${nombre} <span class="badge badge-primary badge-pill">$ ${cantidad}</span>`;
+
+    //Botton de eliminar el gasto
+    const botonBorrar = document.createElement('button');
+    botonBorrar.classList.add('btn','btn-danger');
+    botonBorrar.textContent = 'Borrar';
+    nuevoGasto.appendChild(botonBorrar);
+
+    //Insertar el gasto en el HTML
+    gatosListado.appendChild(nuevoGasto);
+})
+}
+//Limpiar html
+limpiarHTML(){
+    while(gatosListado.firstChild){
+        gatosListado.removeChild(gatosListado.firstChild);
+    }
+}
+//Mostrar el presupuesto restante
+actualizarGasto(restante){
+    document.querySelector('#restante').textContent = restante;
+}
+
 }
 
 
@@ -94,8 +138,15 @@ function agregarGasto(e){
     }
     //Agregar gastos
     presupuesto.nuevoGasto(gatos);
+
     //mesanje de exito
     ui.imprimirAlerta('Gasto agregado correctamente','success');
+
+     //imprimir gastos
+     const {gastos,restante}= presupuesto;
+        ui.insertarGasto(gastos);
+        ui.actualizarGasto(restante);
+
     //Resetear el formulario
     formulario.reset();
 }
