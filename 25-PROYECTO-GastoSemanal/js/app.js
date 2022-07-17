@@ -93,8 +93,19 @@ limpiarHTML(){
 actualizarGasto(restante){
     document.querySelector('#restante').textContent = restante;
 }
+//EStados de presupuesto restante
+comprobarPresupuesto(presupuestoOject){  
+const {presupuesto,restante} = presupuestoOject;
+if(restante <= (presupuesto * 0.25)){
+    document.querySelector('.restante').classList.add('alert-danger');
+}else if(restante <= (presupuesto * 0.50)){
+    document.querySelector('.restante').classList.add('alert-warning');
 
 }
+}
+}
+
+
 
 
 //Distancia 
@@ -146,6 +157,7 @@ function agregarGasto(e){
      const {gastos,restante}= presupuesto;
         ui.insertarGasto(gastos);
         ui.actualizarGasto(restante);
+        ui.comprobarPresupuesto(presupuesto);
 
     //Resetear el formulario
     formulario.reset();
