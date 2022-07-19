@@ -44,6 +44,8 @@ const {presupuesto,restante} = cantidad;
 document.querySelector('#total').textContent = presupuesto;
 document.querySelector('#restante').textContent = restante;
 }
+
+//Imprimir alerta
 imprimirAlerta(mensaje,tipo){
 const divMensaje  = document.createElement('div');
 divMensaje.classList.add('text-center','alert');
@@ -124,6 +126,7 @@ if(restante <= 0){
 const ui = new UI();
 let presupuesto;
 
+//Preguntar por presupuesto
 function preguntarPresupuesto(){
     const presupuestoUsuario = prompt('Ingrese su presupuesto');
     if(presupuestoUsuario === null || presupuestoUsuario === '' || isNaN(presupuestoUsuario)){
@@ -180,7 +183,7 @@ function eliminarGasto(id){
     const {gastos,restante} = presupuesto;
     //Eliminar gasto del presupuesto desde el HTML
     presupuesto.eliminarGasto(id);
-    ui.insertarGasto(gastos);
+    ui.s(gastos);
     ui.actualizarGasto(restante);
     ui.comprobarPresupuesto(presupuesto);
 }
