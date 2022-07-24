@@ -1,5 +1,5 @@
 const notificarBtn = document.querySelector('#notificar');
-
+//Permiso para el notificar
 notificarBtn.addEventListener('click',()=>{
     Notification
     .requestPermission()
@@ -9,8 +9,9 @@ notificarBtn.addEventListener('click',()=>{
 });
 
 const verNoficacionesBtn = document.querySelector('#verNotificacion');
-
+// Ver notificacion
     verNoficacionesBtn.addEventListener('click',()=>{
+        //validar los permission de la notificacion
         if(Notification.permission === 'granted'){
             
             const notificacion = new Notification('Has recibido una notificación',{
