@@ -1,8 +1,9 @@
 const resultado = document.querySelector('#resultado');
 const formulario = document.querySelector('#formulario');
 
-const porPagina = 40;
-let paginas;
+const registroPorpagina = 40;
+let totalPaginas;
+let iterador;
 
 window.onload =()=> {
     formulario.addEventListener('submit', buscarImagenes);
@@ -43,14 +44,13 @@ function busquedaTerminoAPI(terminos){
           })
           return;
       }
-     
       imagHTML(datos.hits);
-      paginas = paginador(datos.totalHits);
-      const iterar = crearPaginacion(paginas);
-      console.log(iterar.next());
+      totalPaginas = calculaPaginas(datos.totalHits);
+      console.log(totalPaginas);
     })
     
 }
+
 
 function imagHTML(images){
 limpiaHTML();
@@ -74,9 +74,8 @@ resultado.innerHTML += `
 </div>
 </div>
 `;
- })   
- const iterar = crearPaginacion(paginas);
- console.log(iterar);
+ })  
+ mostrarPaginas(images);
 }
 
 function limpiaHTML(){
@@ -85,15 +84,24 @@ function limpiaHTML(){
    }
 }
 
-function paginador(total){
-return Math.ceil(total/porPagina);
+function calculaPaginas(total){
+return parseInt(Math.ceil(total/registroPorpagina));
 
 }
 
-function * crearPaginacion(total){
- for(let i = 1; i <= total; i++){
-yield i;
- }
+function *crearPaginas(total){
+
+  for(let i = 1; i <= total; i++){
+    yield i;
+  }
+  
 }
+
+
+function mostrarPaginas(){
+  iterador = crearPaginas(totalPaginas);
+  console.log(iterador.next().done);
+}
+
 
 
