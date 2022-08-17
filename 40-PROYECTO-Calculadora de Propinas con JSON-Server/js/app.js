@@ -89,6 +89,12 @@ cantidad.value = 0;
 cantidad.id =`cantidad-${platillo.id}`;
 cantidad.classList.add("form-control");
 
+//Agregar evento al input
+cantidad.onchange = function(){
+    const cantidadInput = parseInt(cantidad.value); 
+    agregarPlatillo({...platillo, cantidadInput});
+}
+
 const agregar = document.createElement("div");
 agregar.classList.add("col-md-2");
 agregar.appendChild(cantidad);
@@ -108,4 +114,8 @@ contenidos.appendChild(row);
 
 
 });
+}
+
+function agregarPlatillo(producto){
+   
 }
