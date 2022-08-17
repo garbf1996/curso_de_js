@@ -1,9 +1,16 @@
-const contenidoPlatillos = document.querySelector(".contenido");
+
 let cliente = {
     mesa: "",
     hora: "",
     pedidos: []
 }
+
+const categorias = {
+    1:'Comida',
+    2:'Bebida',
+    3:'Postre',
+}
+
 //Agregar pedido
 const btnGuadarCliente = document.querySelector("#guardar-cliente");
 
@@ -50,24 +57,55 @@ function getPlatillos(){
     fetch(url)
     .then(res => res.json())
     .then(data => getAPI(data))
-    .then(error => console.log(error))
 }
 
 function getAPI(platillos){
-const contenedorPlatillos = document.querySelector("#platillos");
-    platillos.forEach(platillo => {
-        const {nombre, precio, descripcion} = platillo;
-        contenedorPlatillos.innerHTML += `
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">${nombre}</h5>
-                <p class="card-text">${descripcion}</p>
-                <h5 class="card-title">$${precio}</h5>
-                <button class="btn btn-primary agregar-platillo" data-id="${platillo.id}">Agregar</button>
-            </div>
-        </div>
-        `;
-        contenidoPlatillos.appendChild(contenedorPlatillos);
-    });
 
+const contenidos = document.querySelector("#platillos .contenido");
+
+platillos.forEach(platillo => {
+//Nombre del platillo
+const row = document.createElement("div");
+row.classList.add("row",'py-3','border-top');
+const nombre = document.createElement("div");
+nombre.classList.add("col-md-4");
+nombre.textContent = platillo.nombre;
+//Precio del platillo
+const precio = document.createElement("div");
+precio.classList.add("col-md-3",'fw-bold');
+precio.textContent =`$${platillo.precio}`;
+
+//Categoria del platillo
+const categoria = document.createElement("div");
+categoria.classList.add("col-md-3");
+categoria.textContent = categorias[platillo.categoria];
+
+//Cantidad del platillo
+const cantidad = document.createElement("INPUT");
+cantidad.classList.add("col-md-2");
+cantidad.type = "number";
+cantidad.min = 0;
+cantidad.value = 0;
+cantidad.id =`cantidad-${platillo.id}`;
+cantidad.classList.add("form-control");
+
+const agregar = document.createElement("div");
+agregar.classList.add("col-md-2");
+agregar.appendChild(cantidad);
+
+
+
+
+row.appendChild(nombre);
+row.appendChild(precio);
+row.appendChild(categoria);
+row.appendChild(agregar);
+
+contenidos.appendChild(row);
+
+
+
+
+
+});
 }
