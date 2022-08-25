@@ -10,6 +10,7 @@ export const nuevoCliente = async cliente =>{
             headers: {
                 'Content-Type': 'application/json',
             }
+
         });
         window.location.href = 'index.html';
     } catch (error) {
@@ -33,6 +34,14 @@ export const obtenerCliente = async ()=>{
 
 
     } catch (error) {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Se perdio la conexion del servidor',
+            text: 'Something went wrong!',
+            footer: '<a href="">Why do I have this issue?</a>'
+          })
+          return;
         
     }
 }
@@ -44,6 +53,14 @@ export const eliminarCliente = async id =>{
      }) ;  
         
     } catch (error) {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Se perdio la conexion del servidor',
+            text: 'Something went wrong!',
+            footer: '<a href="">Why do I have this issue?</a>'
+          })
+          return;
         
     }
 }
@@ -54,10 +71,41 @@ export const ObtenerCliente = async id =>{
  const ressultado = await fetch(`${url}/${id}`); 
  const cliente = await ressultado.json();
  return cliente;
- console.log(cliente);
+
 
     
  } catch (error) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Se perdio la conexion del servidor',
+        text: 'Something went wrong!',
+        footer: '<a href="">Why do I have this issue?</a>'
+      })
+      return;
     
  }
+}
+
+export const editarCliente = async cliente =>{
+    try {
+        
+       await fetch(`${url}/${cliente.id}`,{
+            method: 'PUT',
+            body: JSON.stringify(cliente),
+            headers:{
+                'content-type': 'application/json'
+            }
+        })
+     window.location.href='index.html';
+    } catch (error) {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Se perdio la conexion del servidor',
+            text: 'Something went wrong!',
+            footer: '<a href="">Why do I have this issue?</a>'
+          })
+          return;
+        
+    }
 }
