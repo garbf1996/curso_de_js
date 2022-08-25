@@ -1,11 +1,32 @@
 {
-  "clientes": [
+  "cliente": [
     {
-      "nombre": "Juan NUEVO!",
-      "email": "correo2@correo.com",
-      "telefono": "12",
-      "empresa": "12212",
-      "id": 26
+      "nombre": "juan",
+      "email": "jonathan081684@gmail.com",
+      "telefono": "8294517140",
+      "empresa": "Lenovo",
+      "id": 2
+    },
+    {
+      "nombre": "Sanji",
+      "email": "sanji@gmail.com",
+      "telefono": "295474",
+      "empresa": "IBM",
+      "id": 3
+    },
+    {
+      "nombre": "Andriad Espinal",
+      "email": "Andriad@gmail.com",
+      "telefono": "829-000-5555",
+      "empresa": "smart code",
+      "id": 4
+    },
+    {
+      "nombre": "Juan Daniel",
+      "email": "Daniel@gmail.com",
+      "telefono": "829-852-6333",
+      "empresa": "visual photo",
+      "id": 5
     }
   ]
 }
